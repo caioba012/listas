@@ -10,7 +10,8 @@ public class Main {
             lista.guardeUmItemNoInicio("Caio");
             lista.guardeUmItemNoInicio("Caio");
 
-            lista.inverteLista();
+            System.out.println(lista.inverteListaSemNew(lista));
+            
         }
         catch (Exception erro)
         {

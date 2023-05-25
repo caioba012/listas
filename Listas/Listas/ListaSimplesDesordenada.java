@@ -152,26 +152,7 @@ public class ListaSimplesDesordenada <X>
             posicao++; 
             atual = atual.getProx();
         }        
-    }
-
-    public void qtdElementos(X encontrar) throws Exception
-    {  
-        No atual = this.primeiro;                
-        int contador = 0;       
-        
-        while(atual!=null)
-        {           
-            if(atual.getInfo() == encontrar){                                               
-                contador++;
-            }      
-            atual = atual.getProx();
-        }
-        
-        /*if(contador > 0) //somente para teste.
-            System.out.println(encontrar + " aparece " + contador + " vezes na lista");
-        System.out.println(encontrar + " nao esta presente na lista");*/
-        
-    }
+    }    
 
     public X recupereItemDoFinal () throws Exception
     {
@@ -183,11 +164,7 @@ public class ListaSimplesDesordenada <X>
             ret = meuCloneDeX (ret);
             
         return ret;
-    }
-
-    public int getTamanho(){
-        return this.tamanho;
-    }
+    }   
 
     public void removaItemDoInicio () throws Exception
     {
@@ -203,20 +180,7 @@ public class ListaSimplesDesordenada <X>
         this.primeiro = this.primeiro.getProx();
 
         tamanho--;
-    }
-    
-    public void inverteLista () throws Exception
-    {
-        No atual = this.primeiro;
-        ListaSimplesDesordenada<X> listaInversa = new ListaSimplesDesordenada<X>();        
-
-        while(atual!=null){
-            //listaInversa.guardeUmItemNoFinal(this.);
-            atual = atual.getProx();
-        }
-
-        System.out.println(listaInversa.toString());
-    }
+    }    
 
     public void removaItemDoFinal () throws Exception
     {
@@ -439,4 +403,68 @@ public class ListaSimplesDesordenada <X>
 
         return ret;
     }
+
+    //exercicio 1
+    public int qtdElementos(X encontrar) throws Exception
+    {  
+        No atual = this.primeiro;                
+        int contador = 0;       
+        
+        while(atual!=null)
+        {           
+            if(atual.getInfo() == encontrar){                                               
+                contador++;
+            }      
+            atual = atual.getProx();
+        }
+       return contador;            
+    }
+
+    //exercicio 2
+    public int getTamanho(){
+        //com uma variavel criada e sendo acrescentada +1 quando adiciona valor 
+        //-1 quando remove um valor
+        return this.tamanho;
+    }
+    
+    //exercicio 3
+    public ListaSimplesDesordenada<X> inverteLista () throws Exception
+    {
+        No atual = this.primeiro;
+        ListaSimplesDesordenada<X> listaInversa = new ListaSimplesDesordenada<X>();        
+
+        while(atual!=null){
+            listaInversa.guardeUmItemNoFinal(atual.getInfo());
+            atual = atual.getProx();
+        }
+        return listaInversa;
+    }
+
+    //exercicio 4 - com erro
+    public ListaSimplesDesordenada<X> inverteListaSemNew(ListaSimplesDesordenada lista) throws Exception
+    {        
+        No atual = this.primeiro;
+        No anterior=null;  
+        No prox=null;
+
+        while(atual!=null){
+            prox = atual.getProx();
+            
+            atual.setProx(anterior);
+            
+            anterior = atual;
+            
+            atual = prox;
+            
+            lista.guardeUmItemNoInicio(anterior.getInfo());
+            
+        }
+        this.primeiro = anterior;
+ 
+        return lista;
+        
+    }
+
+    //exercicio 5
+
 }
